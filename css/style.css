@@ -1,0 +1,271 @@
+:root {
+  --width-before: 5px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: "League Spartan", sans-serif;
+  background-color: hsl(180, 52%, 96%);
+}
+header {
+  background-color: hsl(180, 29%, 50%);
+  background-image: url(../images/bg-header-desktop.svg);
+  min-height: 120px;
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+/*Small*/
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+/*Medium*/
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+/*Larg*/
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.filter .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background-color: white;
+  padding: 20px 40px;
+  border-radius: 10px;
+  position: relative;
+  bottom: 35px;
+  box-shadow: 0 10px 10px 0px hsl(180deg 29% 50% / 20%);
+}
+.filter .container .all {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.filter .container .filter-box {
+  display: flex;
+}
+.filter .container .filter-box span {
+  background-color: hsl(180, 31%, 95%);
+  padding: 9px;
+  border-radius: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  color: hsl(180, 29%, 50%);
+  font-weight: bold;
+  font-size: 15px;
+}
+.filter .container .filter-box img {
+  background-color: hsl(180, 8%, 52%);
+  padding: 9px;
+  cursor: pointer;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.filter .container .filter-box img:hover {
+  background-color: hsl(180, 14%, 20%);
+}
+.filter .container .clear {
+  color: hsl(180, 29%, 50%);
+  font-weight: bold;
+}
+.filter .container .clear:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.result .container {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px 0px hsl(180deg 29% 50% / 20%);
+  margin-bottom: 40px;
+  position: relative;
+  margin-top: 20px;
+}
+.result .container::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: var(--width-before);
+  background-color: hsl(180, 29%, 50%);
+  left: 0;
+  top: 0;
+}
+.result .container .left-side {
+  display: flex;
+
+  gap: 25px;
+}
+.result .container .left-side .info-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}
+.result .container .left-side .info-text .top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding-bottom: 12px;
+}
+.result .container .left-side .info-text .top .company {
+  color: hsl(180, 29%, 50%);
+  text-transform: capitalize;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.result .container .left-side .info-text .top .new {
+  color: white;
+  background-color: hsl(180, 29%, 50%);
+  padding: 0 10px;
+  padding-top: 8px;
+  padding-bottom: 5px;
+  font-weight: bold;
+
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+.result .container .left-side .info-text .top .featured {
+  color: white;
+  background-color: hsl(180, 14%, 20%);
+  padding: 0 10px;
+  padding-top: 8px;
+  padding-bottom: 5px;
+  font-weight: bold;
+
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+.result .container .left-side .info-text .center {
+  padding-bottom: 12px;
+}
+
+.result .container .left-side .info-text .center .position {
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.result .container .left-side .info-text .center .position:hover {
+  color: hsl(180, 29%, 50%);
+  cursor: pointer;
+}
+
+.result .container .left-side .info-text .bottom {
+  color: hsl(180, 8%, 52%);
+  display: flex;
+  gap: 15px;
+  font-size: 18px;
+  font-weight: 500;
+}
+.result .container .left-side .info-text .bottom .point {
+  position: relative;
+  bottom: 2.5px;
+}
+.right-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 15px;
+}
+.right-side span {
+  background-color: hsl(180, 31%, 95%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: hsl(180, 29%, 50%);
+}
+.right-side span:hover {
+  background-color: hsl(180, 29%, 50%);
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 345px;
+  }
+  .filter .container {
+    padding: 20px;
+  }
+  .result .container {
+    padding: 20px;
+    flex-direction: column;
+    gap: 50px;
+    align-items: flex-start;
+  }
+  .left-side {
+    position: relative;
+    padding-top: 20px;
+    width: 100%;
+  }
+  .left-side img {
+    position: absolute;
+    bottom: 100px;
+    left: 0px;
+    width: 50px;
+    height: 50px;
+  }
+  .result .container .left-side .info-text .top .company {
+    margin-right: 10px;
+  }
+  .result .container .left-side .info-text .center .position {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .result .container .left-side .info-text .bottom {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .left-side::before {
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 100%;
+    background-color: hsla(180, 8%, 52%, 0.3);
+    top: 130px;
+  }
+  .right-side {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 40px;
+    padding-bottom: 20px;
+  }
+  .right-side span {
+    margin-bottom: 20px;
+  }
+  .result .container::before {
+    left: 0;
+  }
+}
