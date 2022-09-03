@@ -1,5 +1,5 @@
 :root {
-  --width-before: 5px;
+  --width-before: 0px;
 }
 * {
   margin: 0;
@@ -80,6 +80,8 @@ main {
   color: hsl(180, 29%, 50%);
   font-weight: bold;
   font-size: 15px;
+  user-select: none;
+  cursor: pointer;
 }
 .filter .container .filter-box img {
   background-color: hsl(180, 8%, 52%);
@@ -95,6 +97,7 @@ main {
 .filter .container .clear {
   color: hsl(180, 29%, 50%);
   font-weight: bold;
+  user-select: none;
 }
 .filter .container .clear:hover {
   text-decoration: underline;
@@ -113,11 +116,11 @@ main {
   position: relative;
   margin-top: 20px;
 }
-.result .container::before {
+.result .container .ft-left {
   position: absolute;
   content: "";
   height: 100%;
-  width: var(--width-before);
+  width: 5px;
   background-color: hsl(180, 29%, 50%);
   left: 0;
   top: 0;
@@ -152,9 +155,11 @@ main {
   padding-top: 8px;
   padding-bottom: 5px;
   font-weight: bold;
-
   border-radius: 20px;
   text-transform: uppercase;
+}
+.result .container .left-side .info-text .top .new.false {
+  display: none;
 }
 .result .container .left-side .info-text .top .featured {
   color: white;
@@ -166,6 +171,9 @@ main {
 
   border-radius: 20px;
   text-transform: uppercase;
+}
+.result .container .left-side .info-text .top .featured.false {
+  display: none;
 }
 .result .container .left-side .info-text .center {
   padding-bottom: 12px;
@@ -205,6 +213,7 @@ main {
   padding: 10px 20px;
   border-radius: 5px;
   color: hsl(180, 29%, 50%);
+  user-select: none;
 }
 .right-side span:hover {
   background-color: hsl(180, 29%, 50%);
