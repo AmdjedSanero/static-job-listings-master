@@ -146,6 +146,9 @@ main {
   text-transform: capitalize;
   font-size: 16px;
   font-weight: bold;
+  padding: 0 0px;
+  padding-top: 8px;
+  padding-bottom: 5px;
 }
 
 .result .container .left-side .info-text .top .new {
@@ -220,8 +223,71 @@ main {
   color: white;
   cursor: pointer;
 }
+.right-side .languages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+@media (max-width: 992px) {
+  .container {
+    width: 700px;
+  }
+  .filter .container {
+    padding: 20px;
+  }
+  .result .container {
+    padding: 20px;
+    flex-direction: column;
+    gap: 50px;
+    align-items: flex-start;
+  }
+  .left-side {
+    position: relative;
+    padding-top: 20px;
+    width: 100%;
+  }
+  .left-side img {
+    position: absolute;
+    bottom: 100px;
+    left: 0px;
+    width: 50px;
+    height: 50px;
+  }
+  .result .container .left-side .info-text .top .company {
+    margin-right: 10px;
+  }
+  .result .container .left-side .info-text .center .position {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .result .container .left-side .info-text .bottom {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .left-side::before {
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 100%;
+    background-color: hsla(180, 8%, 52%, 0.3);
+    top: 120px;
+  }
+  .right-side {
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 0px;
+    align-items: flex-start;
+  }
+  .right-side span {
+    margin-bottom: 20px;
+  }
+  .result .container::before {
+    left: 0;
+  }
+}
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .container {
     width: 345px;
   }
@@ -263,13 +329,13 @@ main {
     height: 2px;
     width: 100%;
     background-color: hsla(180, 8%, 52%, 0.3);
-    top: 130px;
+    top: 120px;
   }
   .right-side {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 40px;
-    padding-bottom: 20px;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 0px;
+    align-items: flex-start;
   }
   .right-side span {
     margin-bottom: 20px;
