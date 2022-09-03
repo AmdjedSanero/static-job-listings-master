@@ -1,7 +1,7 @@
 let main = document.querySelector("main");
 
 function getData() {
-  fetch("./data.json")
+  fetch("js/data.json")
     .then((response) => response.json())
     .then((myData) => {
       myData.forEach((element) => {
