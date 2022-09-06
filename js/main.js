@@ -75,7 +75,7 @@ function getData(dataFinal) {
     left_side.className = "left-side";
 
     let img = document.createElement("img");
-
+    img.alt = "none";
     let info_text = document.createElement("div");
     info_text.className = "info-text";
     // top
