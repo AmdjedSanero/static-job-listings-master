@@ -229,6 +229,11 @@ main {
   color: white;
   cursor: pointer;
 }
+.right-side span:active {
+  background-color: hsl(180, 29%, 50%);
+  color: white;
+  cursor: pointer;
+}
 .right-side .languages {
   display: flex;
   justify-content: center;

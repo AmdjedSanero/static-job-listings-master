@@ -5,7 +5,7 @@ let clear = document.querySelector(".filter .container .clear");
 
 let containerAll = document.querySelector(".filter .container .all");
 const boxes = [];
-
+let firstTime = true;
 const endpont = "js/data.json";
 
 fetch(endpont)
@@ -14,13 +14,21 @@ fetch(endpont)
 
 function findMatches(word, boxes) {
   return boxes.filter((box) => {
-    let t;
+    let t, f;
     for (let i = 0; i < word.length; i++) {
       t =
         box.role.match(word[i].innerHTML) || box.level.match(word[i].innerHTML);
-    }
-    if (t) {
-      return box;
+      for (let j = 0; j < box.languages.length; j++) {
+        f = box.languages[j].match(word[i].innerHTML);
+        if (f) {
+          // console.log(box);
+          return box;
+        }
+      }
+      if (t) {
+        // console.log(box);
+        return box;
+      }
     }
   });
 }
@@ -29,6 +37,8 @@ function findAll(boxes) {
 }
 
 function displayAll() {
+  main.style.marginTop = "60px";
+
   fetch("js/data.json")
     .then((response) => response.json())
     .then((myData) => {
@@ -48,6 +58,7 @@ function displayMatches(spanSearch) {
       uni.push(dataFinal[j]);
     }
   }
+  main.style.marginTop = "0";
   getData(uni);
 }
 
@@ -153,39 +164,58 @@ function getData(dataFinal) {
 
   for (let i = 0; i < spanRightSide.length; i++) {
     spanRightSide[i].addEventListener("click", function () {
-      filterContainer.classList.remove("none");
-      let filtre_box = document.createElement("div");
-      filtre_box.className = "filter-box";
-      filtre_box.innerHTML = `
+      let spanSearchh = document.querySelectorAll(
+        ".filter .container .filter-box span"
+      );
+      let bool = false;
+      // console.log(spanRightSide[i].innerHTML);
+      // console.log(spanSearchh.length);
+
+      for (let k = 0; k < spanSearchh.length; k++) {
+        if (spanSearchh[k].innerHTML == spanRightSide[i].innerHTML) {
+          bool = true;
+        }
+      }
+
+      if (bool === false) {
+        // firstTime = false;
+        filterContainer.classList.remove("none");
+        let filtre_box = document.createElement("div");
+        filtre_box.className = "filter-box";
+        filtre_box.innerHTML = `
       <span class="text">${spanRightSide[i].innerHTML}</span>
       <img src="images/icon-remove.svg" alt="" />
     `;
-      containerAll.appendChild(filtre_box);
-      let spanSearchDel = document.querySelectorAll(
-        ".filter .container .filter-box img"
-      );
-      let spanSearch = document.querySelectorAll(
-        ".filter .container .filter-box span"
-      );
+        containerAll.appendChild(filtre_box);
 
-      spanSearchDel.forEach((element) => {
-        element.addEventListener("click", function () {
-          element.parentElement.remove();
-          let spanSearch = document.querySelectorAll(
-            ".filter .container .filter-box span"
-          );
-          console.log(spanSearch.length);
+        let spanSearchDel = document.querySelectorAll(
+          ".filter .container .filter-box img"
+        );
+        let spanSearch = document.querySelectorAll(
+          ".filter .container .filter-box span"
+        );
 
-          if (spanSearch.length == 0) {
-            displayAll();
-            filterContainer.classList.add("none");
-          } else {
-            displayMatches(spanSearch);
-          }
+        spanSearchDel.forEach((element) => {
+          element.addEventListener("click", function () {
+            element.parentElement.remove();
+            let spanSearch = document.querySelectorAll(
+              ".filter .container .filter-box span"
+            );
+            console.log(spanSearch.length);
+
+            if (spanSearch.length == 0) {
+              displayAll();
+              filterContainer.classList.add("none");
+            } else {
+              displayMatches(spanSearch);
+            }
+          });
         });
-      });
 
-      displayMatches(spanSearch);
+        displayMatches(spanSearch);
+      } else {
+        console.log("NONNNNNNN");
+      }
     });
   }
 }
