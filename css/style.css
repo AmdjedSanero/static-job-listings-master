@@ -230,7 +230,7 @@ main {
   color: white;
 }
 .right-side span:active {
-  background-color: hsl(0, 100%, 50%);
+  background-color: hsl(180, 54%, 67%);
   color: white;
   cursor: pointer;
 }
