@@ -223,14 +223,14 @@ main {
   border-radius: 5px;
   color: hsl(180, 29%, 50%);
   user-select: none;
+  cursor: pointer;
 }
 .right-side span:hover {
   background-color: hsl(180, 29%, 50%);
   color: white;
-  cursor: pointer;
 }
 .right-side span:active {
-  background-color: hsl(180, 29%, 50%);
+  background-color: hsl(0, 100%, 50%);
   color: white;
   cursor: pointer;
 }
