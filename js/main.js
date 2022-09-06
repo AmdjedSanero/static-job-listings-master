@@ -6,9 +6,6 @@ let clear = document.querySelector(".filter .container .clear");
 let containerAll = document.querySelector(".filter .container .all");
 const boxes = [];
 
-let spanSearchDel = document.querySelectorAll(
-  ".filter .container .filter-box img"
-);
 const endpont = "js/data.json";
 
 fetch(endpont)
@@ -17,12 +14,14 @@ fetch(endpont)
 
 function findMatches(word, boxes) {
   return boxes.filter((box) => {
-    const regEx = new RegExp(word, "gi");
-    return (
-      box.role.match(regEx) ||
-      box.level.match(regEx) ||
-      box.languages[0].match(regEx)
-    );
+    let t;
+    for (let i = 0; i < word.length; i++) {
+      t =
+        box.role.match(word[i].innerHTML) || box.level.match(word[i].innerHTML);
+    }
+    if (t) {
+      return box;
+    }
   });
 }
 function findAll(boxes) {
@@ -33,7 +32,6 @@ function displayAll() {
   fetch("js/data.json")
     .then((response) => response.json())
     .then((myData) => {
-      console.log(myData);
       getData(myData);
     });
 }
@@ -42,17 +40,15 @@ function displayMatches(spanSearch) {
   const dataFinal = [];
   const uni = [];
 
-  for (let i = 0; i < spanSearch.length; i++) {
-    da = findMatches(spanSearch[i].innerHTML, boxes);
-    dataFinal.push(...da);
+  da = findMatches(spanSearch, boxes);
+  dataFinal.push(...da);
+
+  for (let j = 0; j < dataFinal.length; j++) {
+    if (uni.indexOf(dataFinal[j]) === -1) {
+      uni.push(dataFinal[j]);
+    }
   }
-  // for (let j = 0; j < dataFinal.length; j++) {
-  //   if (uni.indexOf(dataFinal[j]) === -1) {
-  //     uni.push(dataFinal[j]);
-  //   }
-  // }
-  console.log(dataFinal);
-  getData(dataFinal);
+  getData(uni);
 }
 
 function getData(dataFinal) {
@@ -152,6 +148,7 @@ function getData(dataFinal) {
 
     main.appendChild(result);
   });
+
   let spanRightSide = document.querySelectorAll(".right-side span");
 
   for (let i = 0; i < spanRightSide.length; i++) {
@@ -164,19 +161,40 @@ function getData(dataFinal) {
       <img src="images/icon-remove.svg" alt="" />
     `;
       containerAll.appendChild(filtre_box);
+      let spanSearchDel = document.querySelectorAll(
+        ".filter .container .filter-box img"
+      );
       let spanSearch = document.querySelectorAll(
         ".filter .container .filter-box span"
       );
+
+      spanSearchDel.forEach((element) => {
+        element.addEventListener("click", function () {
+          element.parentElement.remove();
+          let spanSearch = document.querySelectorAll(
+            ".filter .container .filter-box span"
+          );
+          console.log(spanSearch.length);
+
+          if (spanSearch.length == 0) {
+            displayAll();
+            filterContainer.classList.add("none");
+          } else {
+            displayMatches(spanSearch);
+          }
+        });
+      });
+
       displayMatches(spanSearch);
     });
   }
 }
-spanSearchDel.forEach((element) => {
-  element.addEventListener("click", function () {
-    element.parentElement.remove();
-  });
-});
+clear.addEventListener("click", function () {
+  let spanSearch = document.querySelectorAll(
+    ".filter .container .filter-box span"
+  );
 
-// if (containerAll.hasChildNodes.length === 0) {
-//   filterContainer.classList.add("none");
-// }
+  displayAll();
+  containerAll.innerHTML = "";
+  filterContainer.classList.add("none");
+});
